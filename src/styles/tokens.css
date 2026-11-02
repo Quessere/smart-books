@@ -1,0 +1,13 @@
+:root {
+  --dashboard-background: #cbe2fd;
+  --panel-background: #ffffff;
+  --heading-color: #0f6103;
+  --title-color: #00174d;
+  --muted-green: #73b17d;
+  --bar-green: #4d9649;
+  --font-ui: 'Inter', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+  --font-chinese: 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+  --heading-size: 48px;
+  --canvas-width: 2560;
+  --canvas-height: 1440;
+}

@@ -1,0 +1,16 @@
+{
+  "fileKey": "68t5khLkCA9gmKAdpg6QEq",
+  "frameNode": "2005:331",
+  "source": "Figma get_design_context exports, downloaded 2026-10-19",
+  "assets": [
+    { "file": "university-logo.png", "node": "6:7", "component": "DashboardHeader", "slot": [0, 10, 480, 148] },
+    { "file": "title-banner.svg", "node": "2003:329", "component": "DashboardHeader", "intrinsicSize": [1124.99, 217.392] },
+    { "file": "weather-sun.svg", "node": "6:16", "component": "DashboardHeader", "slot": [2103, 52, 65, 65] },
+    { "file": "campus-spring.png", "node": "23:707", "component": "CampusShowcase", "clipSlot": [712, 285, 1090, 588], "rotation": 0.26 },
+    { "file": "reading-activity.png", "node": "2003:310", "component": "ActivityDisplay", "clipSlot": [712, 1026, 527, 382] },
+    { "file": "new-books.png", "node": "2003:327", "component": "NewBooksBulletin", "clipSlot": [1870, 266, 661, 393] },
+    { "file": "notice-background.png", "node": "4:33", "component": "NoticeBoard", "slot": [1820, 729, 734, 689], "opacity": 0.61 },
+    { "file": "heading-marker.svg", "node": "8:7", "component": "ModuleHeading", "intrinsicSize": [14, 56] },
+    { "file": "heading-marker-short.svg", "node": "11:731", "component": "ModuleHeading", "intrinsicSize": [14, 51] }
+  ]
+}

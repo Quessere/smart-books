@@ -1,0 +1,11 @@
+* { box-sizing: border-box; }
+html, body, #app { width: 100%; height: 100%; margin: 0; }
+body { background: var(--dashboard-background); color: var(--heading-color); font-family: var(--font-ui); }
+body { -webkit-font-smoothing: antialiased; }
+h1, h2, p, figure { margin: 0; }
+img { display: block; }
+button, input { font: inherit; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.module { position: relative; min-width: 0; min-height: 0; background: var(--panel-background); overflow: hidden; }
+.chart { width: 100%; height: 100%; }
+.empty-state { display: grid; height: 100%; place-items: center; color: #758b7a; font-size: 24px; }

@@ -1,0 +1,26 @@
+import type { Rect, WidgetId } from '../types/editor'
+
+export interface TemplateSlot extends Rect { name: string; preferred: WidgetId[] }
+export interface LayoutTemplate { id: string; name: string; description: string; count: number; sourceSlide: number; slots: TemplateSlot[] }
+const slot = (name: string,x: number,y: number,w: number,h: number,...preferred: WidgetId[]): TemplateSlot => ({ name,x,y,w,h,preferred })
+
+// Fixed 2560 × 1440 compositions, grounded in the supplied PPT's slides 2–9.
+// Side rails clear the title banner; every slot accommodates every current widget.
+export const layoutTemplates: LayoutTemplate[] = [
+  { id: 'two-focus', name: '主次双区', description: '宽幅主展示，右侧信息配合', count: 2,sourceSlide: 2,slots: [slot('左侧主展示',40,300,1416,1108,'hero','activity'),slot('右侧信息',1496,300,1024,1108,'books','newBooks','notices')] },
+  { id: 'two-balanced', name: '左右对照', description: '两侧齐平，适合并列展示', count: 2,sourceSlide: 2,slots: [slot('左侧展示',40,300,1220,1108,'hero','activity'),slot('右侧展示',1300,300,1220,1108,'books','newBooks','searches')] },
+  { id: 'two-panorama', name: '全景与信息带', description: '上方全景，下方横向信息', count: 2,sourceSlide: 4,slots: [slot('上方全景',40,280,2480,696,'hero','activity'),slot('下方信息带',40,1016,2480,392,'statistics','readers','newBooks')] },
+  { id: 'three-center', name: '中央主视觉', description: '中间主图，两侧纵向陪衬', count: 3,sourceSlide: 3,slots: [slot('左侧纵栏',40,176,624,1232,'books','newBooks'),slot('中央主展示',704,280,1152,1128,'hero'),slot('右侧纵栏',1896,176,624,1232,'activity','notices')] },
+  { id: 'three-left', name: '左主右辅', description: '左侧大图，右侧上下呼应', count: 3,sourceSlide: 4,slots: [slot('左侧主展示',40,280,1496,1128,'hero','activity'),slot('右上信息',1576,280,944,552,'books','newBooks'),slot('右下信息',1576,872,944,536,'searches','notices','statistics')] },
+  { id: 'three-right', name: '右主左辅', description: '右侧大图，左侧分区呈现', count: 3,sourceSlide: 5,slots: [slot('左上信息',40,280,944,552,'books','statistics'),slot('左下信息',40,872,944,536,'searches','newBooks'),slot('右侧主展示',1024,280,1496,1128,'hero','activity')] },
+  { id: 'four-mosaic', name: '错落双栏', description: '上下错位，保持外沿对齐', count: 4,sourceSlide: 4,slots: [slot('左上信息',40,280,1216,480,'newBooks','statistics'),slot('左下展示',40,800,1216,608,'books','searches'),slot('右上展示',1296,280,1224,608,'activity','notices'),slot('右下主图',1296,928,1224,480,'hero')] },
+  { id: 'four-focus', name: '大图与三段栏', description: '一处主展示，三段信息纵排', count: 4,sourceSlide: 7,slots: [slot('左侧主展示',40,280,1520,1128,'hero','activity'),slot('右上信息',1600,280,920,360,'books','newBooks'),slot('右中信息',1600,664,920,360,'searches','readers'),slot('右下信息',1600,1048,920,360,'statistics','notices')] },
+  { id: 'four-center', name: '两翼与中央双区', description: '两侧纵栏，中央上下展示', count: 4,sourceSlide: 6,slots: [slot('左侧纵栏',40,176,624,1232,'books','newBooks'),slot('中央上方',704,280,1152,544,'hero'),slot('中央下方',704,864,1152,544,'searches','statistics'),slot('右侧纵栏',1896,176,624,1232,'activity','notices')] },
+  { id: 'five-center', name: '三栏主视觉', description: '中间突出主图，两翼上下成组', count: 5,sourceSlide: 5,slots: [slot('左上信息',40,176,624,604,'books'),slot('左下信息',40,804,624,604,'statistics','readers'),slot('中央主展示',704,280,1152,1128,'hero','activity'),slot('右上信息',1896,176,624,604,'newBooks','activity'),slot('右下信息',1896,804,624,604,'searches','notices')] },
+  { id: 'five-columns', name: '双栏错落', description: '左侧双展示，右侧三段信息', count: 5,sourceSlide: 7,slots: [slot('左上主展示',40,280,1496,552,'hero'),slot('左下展示',40,872,1496,536,'activity','searches'),slot('右上信息',1576,280,944,360,'books','newBooks'),slot('右中信息',1576,664,944,360,'readers','newBooks'),slot('右下信息',1576,1048,944,360,'statistics','notices')] },
+  { id: 'five-strip', name: '主展示与底部信息', description: '上方两处展示，下方三格信息带', count: 5,sourceSlide: 7,slots: [slot('上方主展示',40,280,1520,704,'hero'),slot('右上展示',1600,280,920,704,'activity','newBooks'),slot('左下信息',40,1016,800,392,'books','readers'),slot('中下信息',880,1016,800,392,'searches','newBooks'),slot('右下信息',1720,1016,800,392,'statistics','notices')] },
+  { id: 'six-dashboard', name: '三栏综合展示', description: '左侧数据，中央主图与活动，右侧信息', count: 6,sourceSlide: 6,slots: [slot('左上数据',40,176,624,552,'books','readers'),slot('左下数据',40,752,624,656,'statistics','readers'),slot('中央主图',704,280,1152,624,'hero'),slot('中央下方',704,936,1152,472,'activity'),slot('右上信息',1896,176,624,552,'newBooks','notices'),slot('右下信息',1896,752,624,656,'searches','notices')] },
+  { id: 'six-focus', name: '中央整幅展示', description: '中央纵向展示，两翼分层组织', count: 6,sourceSlide: 8,slots: [slot('左上数据',40,176,624,394,'books'),slot('左中数据',40,594,624,395,'readers','searches'),slot('左下数据',40,1013,624,395,'statistics'),slot('中央主展示',704,280,1152,1128,'hero','activity'),slot('右上信息',1896,176,624,604,'newBooks','activity'),slot('右下信息',1896,804,624,604,'notices','searches')] },
+  { id: 'six-strip', name: '全景与多区信息', description: '宽幅主图，上侧双区与底部三格', count: 6,sourceSlide: 9,slots: [slot('上方主展示',40,280,1520,704,'hero'),slot('右上展示',1600,280,920,340,'activity','newBooks'),slot('右中信息',1600,644,920,340,'newBooks','notices'),slot('左下数据',40,1016,800,392,'books','readers'),slot('中下热词',880,1016,800,392,'searches'),slot('右下数据',1720,1016,800,392,'statistics','readers')] },
+]
+export const getLayoutTemplate = (id: string) => layoutTemplates.find(template => template.id === id)
