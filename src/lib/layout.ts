@@ -72,7 +72,7 @@ export function layoutProblems(layout: WidgetLayout[]): string[] {
   for (const item of layout) {
     const d = definition(item.id)
     if (![item.x,item.y,item.w,item.h].every(Number.isFinite) || item.w < d.minW || item.h < d.minH || !inBounds(item)) problems.push(`${d.name}的尺寸或位置无效`)
-    if (item.visible && overlaps(item, titleObstacle)) problems.push(`${d.name}遮挡了平台标题`)
+    if (item.visible && overlaps(item, titleObstacle)) problems.push(`${d.name}遮挡了顶部预留区域`)
   }
   const visible = layout.filter(item => item.visible)
   visible.forEach((a,i) => visible.slice(i+1).forEach(b => { if (overlaps(a,b)) problems.push(`${definition(a.id).name}与${definition(b.id).name}重叠`) }))
