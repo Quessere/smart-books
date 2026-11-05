@@ -7,11 +7,20 @@ import { safeSource, validateDocument } from '../src/lib/validation.ts'
 import { addLocalAsset, getLocalAsset, loadLocalDocument, makeBackup, readBackup, saveLocalDocument } from '../src/services/localRepository.ts'
 import { layoutTemplates } from '../src/data/layoutTemplates.ts'
 import { assignTemplateSlot,compositionForTemplate,layoutFromTemplate } from '../src/lib/templateLayout.ts'
+import { publicAssetUrl } from '../src/lib/publicAsset.ts'
 
 // FileReader is a browser API; retain real Blob bytes in the Node storage test.
 globalThis.FileReader = class {
   readAsDataURL(blob) { blob.arrayBuffer().then(buffer => { this.result = `data:${blob.type};base64,${Buffer.from(buffer).toString('base64')}`; this.onload?.() },() => this.onerror?.()) }
 }
+test('bundled assets work at the root and under a GitHub Pages project path', () => {
+  const asset = '/assets/figma/campus-spring.png'
+  assert.equal(publicAssetUrl(asset, '/'), asset)
+  assert.equal(publicAssetUrl(asset, '/smart-books/'), '/smart-books/assets/figma/campus-spring.png')
+  assert.equal(publicAssetUrl(asset, '/smart-books'), '/smart-books/assets/figma/campus-spring.png')
+  assert.equal(publicAssetUrl('https://example.org/image.png', '/smart-books/'), 'https://example.org/image.png')
+  assert.equal(publicAssetUrl('local-media:sample', '/smart-books/'), 'local-media:sample')
+})
 test('default document and every auto-arrangement of the eight modules are valid', () => {
   assert.deepEqual(layoutProblems(createDefaultDocument().layout),[])
   assert.equal(validateDocument(createDefaultDocument()).content.searches.limit,24)

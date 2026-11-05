@@ -21,6 +21,8 @@ Vue 3 + TypeScript + Vite + ECharts 5.6 / echarts-wordcloud。保留原 Figma �
 
 本地预览：`http://127.0.0.1:4173/`。顶部滚动显示北京时间和日期；右下角“编辑大屏”进入编辑，也可使用 `?edit=1`。`?display=1` 打开没有编辑入口的展示页。
 
+GitHub Pages 使用 `.github/workflows/deploy.yml` 从 GitHub 的 `main` 分支自动构建并发布，构建输出为 `dist/client`。工作流设置 `VITE_PUBLIC_BASE=/smart-books/`，以适配项目网址中的子目录；本地和其他站点默认使用根目录。GitHub 仓库的 Settings → Pages 需要将部署来源设为 GitHub Actions。
+
 1. 默认使用左侧模板面板选择版式并为版位选择组件；点击“编辑”打开内容设置。
 2. 如需手动调整，先转为自由布局，再通过勾选、拖拽或“布局”输入框操作。
 3. 编辑词条、热度、颜色、标题、统计演示数据、通知、新书和图片/视频素材。
