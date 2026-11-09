@@ -8,6 +8,27 @@ import { addLocalAsset, getLocalAsset, loadLocalDocument, makeBackup, readBackup
 import { layoutTemplates } from '../src/data/layoutTemplates.ts'
 import { assignTemplateSlot,compositionForTemplate,layoutFromTemplate } from '../src/lib/templateLayout.ts'
 import { publicAssetUrl } from '../src/lib/publicAsset.ts'
+import { describeWeather, getCurrentWeather } from '../src/services/weather.ts'
+
+test('current weather converts WMO codes and preserves zero temperatures', async () => {
+  assert.equal(describeWeather(0), '晴')
+  assert.equal(describeWeather(3), '阴')
+  assert.equal(describeWeather(95), '雷雨')
+  const originalFetch = globalThis.fetch
+  try {
+    globalThis.fetch = async url => {
+      const params = new URL(url).searchParams
+      assert.equal(params.get('latitude'), '31.86')
+      assert.equal(params.get('longitude'), '117.28')
+      return { ok: true, json: async () => ({ current: { temperature_2m: 0, weather_code: 2 } }) }
+    }
+    assert.deepEqual(await getCurrentWeather(31.86, 117.28), { temperature: 0, description: '多云' })
+    globalThis.fetch = async () => ({ ok: true, json: async () => ({ current: {} }) })
+    await assert.rejects(getCurrentWeather(31.86, 117.28), /Invalid weather data/)
+    globalThis.fetch = async () => ({ ok: false })
+    await assert.rejects(getCurrentWeather(31.86, 117.28), /Weather request failed/)
+  } finally { globalThis.fetch = originalFetch }
+})
 
 // FileReader is a browser API; retain real Blob bytes in the Node storage test.
 globalThis.FileReader = class {

@@ -19,7 +19,7 @@ Vue 3 + TypeScript + Vite + ECharts 5.6 / echarts-wordcloud。保留原 Figma �
 
 ## 使用
 
-本地预览：`http://127.0.0.1:4173/`。顶部滚动显示北京时间和日期；右下角“编辑大屏”进入编辑，也可使用 `?edit=1`。`?display=1` 打开没有编辑入口的展示页。
+本地预览：`http://127.0.0.1:4173/`。顶部滚动显示时间、日期和当地天气、温度；天气数据来自 Open-Meteo，每 15 分钟刷新一次，需要浏览器位置权限和网络连接。右下角“编辑大屏”进入编辑，也可使用 `?edit=1`。`?display=1` 打开没有编辑入口的展示页。
 
 GitHub Pages 使用 `.github/workflows/deploy.yml` 从 GitHub 的 `main` 分支自动构建并发布，构建输出为 `dist/client`。工作流设置 `VITE_PUBLIC_BASE=/smart-books/`，以适配项目网址中的子目录；本地和其他站点默认使用根目录。GitHub 仓库的 Settings → Pages 需要将部署来源设为 GitHub Actions。
 

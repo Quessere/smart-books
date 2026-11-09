@@ -9,7 +9,7 @@
 - Preserve the original university branding, pale blue background, green headings, images, and default 2560 × 1440 layout.
 - Latest layout decision (2026-10-19): fixed positions supplied by reusable templates. Provide multiple variants for 2, 3, 4, 5, and 6 components, grounded in the user's `大数据展示平台模板.pptx` slides 2–9. Operators select a template and choose one component for each fixed slot. Template geometry stays locked; switching components must not move/resize slots. Keep free layout as a separate optional mode and preserve stored content and published screens.
 - Latest design decision (2026-11-04): use the original dashboard design from Gitee `master` and remove the later Mijobello-inspired screen. Preserve the original editor and existing browser data. The user is building a large-screen display and does not currently require mobile adaptation or mobile testing.
-- Header refinement (2026-11-04): remove the central title banner and weather display; keep the university logo and show only Beijing time and date in a scrolling header. Preserve existing stored content for compatibility.
+- Header refinement (2026-11-09): keep the university logo and show time, date, local weather and temperature in the scrolling header, without the words “北京时间”. Use browser geolocation and Open-Meteo current weather, refreshing every 15 minutes; show failures instead of stale or demonstration values. Preserve existing stored content for compatibility.
 
 Run the local server yourself and open the preview in the browser available to this environment. Do not give the user server-start instructions when you can run it.
 
